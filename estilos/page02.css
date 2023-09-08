@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+body {
+    position: relative;
+}
+
+section#campo1 {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+section#campo1 > p {
+    text-align: center;
+    font-size: 1em;
+    color: white;
+    font-weight: bolder;
+    margin-bottom: 50px;
+}
+
+section#campo1 > div#dcurso {
+    margin-bottom: 15px;
+}
+
+section#campo1 > div#dcurso > select#curso {
+    display: block;
+    margin: auto;
+    height: 50px;
+    width: 200px;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: bolder;
+    color: #009045;
+    box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
+}
+
+section#campo1 > div#dcurso > select#curso:focus {
+    outline: 0;
+}
+
+section#campo1 > div#ddisciplina > select#disciplina {
+    display: block;
+    margin: auto;
+    height: 50px;
+    width: 200px;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: bolder;
+    color: #009045;
+    box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
+    margin-bottom: 70px;
+}
+
+section#campo1 > div#ddisciplina > select#disciplina:focus {
+    outline: 0;
+}
+
+div#info {
+    width: 300px;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+    margin-bottom: 70px;
+    box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
+}
+
+div#info > p {
+    color: #009045;
+    font-weight: bolder;
+    padding: 10px;
+}
+
+div#botao > a {
+    text-decoration: none;
+}
+
+div#botao > a > button {
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 60px;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+    text-decoration: none;
+    box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
+
+    color: #009045;
+    font-weight: bolder;
+    font-size: 1em;
+    text-decoration: none;
+    display: block;
+}
