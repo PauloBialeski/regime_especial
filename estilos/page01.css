@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+header > div > img {
+    display: block;
+    margin: auto;
+    height: 110px;
+    margin-top: 20%;
+    margin-bottom: 20%;
+}
+
+main > div > p {
+    text-align: center;
+    color: white;
+    margin-bottom: 30%;
+}
+
+main > div#botao > a {
+    text-decoration: none;
+}
+
+main > div#botao > a > button {
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 60px;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+    text-decoration: none;
+    box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
+
+    color: #009045;
+    font-weight: bolder;
+    font-size: 1em;
+    text-decoration: none;
+    display: block;
+}
