@@ -1,24 +1,35 @@
 @charset "UTF-8";
 
-header > div > img {
-    display: block;
-    margin: auto;
-    height: 110px;
-    margin-top: 20%;
-    margin-bottom: 20%;
+body {
+    position: relative;
 }
 
-main > div > p {
+section#campo {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+div > img {
+    /* display: block;
+    margin: auto; */
+    height: 110px;
+    /* margin-top: 20%; */
+    margin-bottom: 80px;
+}
+
+div > p {
     text-align: center;
     color: white;
-    margin-bottom: 30%;
+    margin-bottom: 85px;
 }
 
-main > div#botao > a {
+div#botao > a {
     text-decoration: none;
 }
 
-main > div#botao > a > button {
+div#botao > a > button {
     display: block;
     margin: auto;
     width: 200px;
