@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+main.container {
+    display: flex;
+    flex-flow: column  nowrap;
+    align-items: center;
+}
+
+main.container > p {
+    color: white;
+    font-size: 1.1em;
+    margin: 100px 0px 100px 0px;
+}
+
+div.dados {
+    margin-bottom: 20px;
+    width: 290px;
+    border-radius: 10px;
+    background-color: #23B569;
+    box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
+}
+
+div.dados > p {
+    display: inline-block;
+    width: 78px;
+    padding: 4px;
+    margin-right: 4px;
+    color: white;
+    font-weight: bolder;
+    
+}
+
+div.dados > input , select {
+    border-radius: 0px 10px 10px 0px;
+    height: 25px;
+    width: calc(100% - 87.5px);
+    border: none;
+    padding: 4px;
+    font-size: 0.9em;
+    font-weight: bolder;
+    color: #009045;
+}
+
+div.dados > input , select:focus {
+    outline: 0;
+}
+
+main.container > form > input[type=submit] {
+    display: block;
+    margin: auto;
+    margin-top: 100px;
+
+    width: 180px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+    box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
+
+    color: #009045;
+    font-weight: bolder;
+    font-size: 1em;
+}
+

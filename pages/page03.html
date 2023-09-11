@@ -5,8 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina 03</title>
     <link rel="stylesheet" href="../estilos/global_styles.css">
+    <link rel="stylesheet" href="../estilos/page03.css">
 </head>
 <body>
-    <h1>PAGE 03</h1>
+    <main class="container">
+        <p>Coloque suas informações</p>
+        <form action="endpage.html" autocomplete="off">
+            <div class="dados">
+                <p>RA:</p>
+                <input type="text" name="ra" id="ra">
+            </div>
+            <div class="dados">
+                <p>Nome:</p>
+                <input type="text" name="nome" id="nome">
+            </div>
+            <div class="dados">
+                <p>Semestre:</p>
+                <select name="semestre" id="semestre">
+                    <option value=""></option>
+                    <option value="1s">1° Semestre</option>
+                    <option value="2s">2° Semestre</option>
+                    <option value="3s">3° Semestre</option>
+                    <option value="4s">4° Semestre</option>
+                    <option value="5s">5° Semestre</option>
+                </select>
+            </div>
+            <div class="dados">
+                <p>Período:</p>
+                <select name="periodo" id="periodo">
+                    <option value=""></option>
+                    <option value="mat">Matutino</option>
+                    <option value="not">Noturno</option>
+                </select>
+            </div>
+            <input type="submit" value="Enviar">
+        </form>
+    </main>
 </body>
 </html>
