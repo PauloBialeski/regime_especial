@@ -14,7 +14,8 @@ main.container > p {
 
 div.dados {
     margin-bottom: 20px;
-    width: 290px;
+    height: 35px;
+    width: 305px;
     border-radius: 10px;
     background-color: #23B569;
     box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
@@ -23,8 +24,8 @@ div.dados {
 div.dados > p {
     display: inline-block;
     width: 78px;
-    padding: 4px;
-    margin-right: 4px;
+    padding: 8px 6px 6px 6px;
+    margin-right: 5px;
     color: white;
     font-weight: bolder;
     
@@ -32,7 +33,7 @@ div.dados > p {
 
 div.dados > input , select {
     border-radius: 0px 10px 10px 0px;
-    height: 25px;
+    height: 35px;
     width: calc(100% - 87.5px);
     border: none;
     padding: 4px;
