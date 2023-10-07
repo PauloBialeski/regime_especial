@@ -10,7 +10,7 @@
 <body>
     <main class="container">
         <p>Coloque suas informações</p>
-        <form action="endpage.html" autocomplete="off">
+        <form id="form" action="endpage.html" autocomplete="off">
             <div class="dados">
                 <p>RA:</p>
                 <input type="text" name="ra" id="ra">
@@ -18,6 +18,10 @@
             <div class="dados">
                 <p>Nome:</p>
                 <input type="text" name="nome" id="nome">
+            </div>
+            <div class="dados">
+                <p>Contato:</p>
+                <input type="tel" name="contato" id="contato" pattern="[0-9]{2}-[0-9]{9}">
             </div>
             <div class="dados">
                 <p>Semestre:</p>
@@ -41,5 +45,7 @@
             <input type="submit" value="Enviar">
         </form>
     </main>
+
+    <script src="../script/script.js"></script>
 </body>
 </html>
