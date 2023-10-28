@@ -6,22 +6,19 @@
     <title>Pagina 02</title>
     <link rel="stylesheet" href="../estilos/global_styles.css">
     <link rel="stylesheet" href="../estilos/page02.css">
+    
 </head>
 <body>
     <section id="campo1">
         <p>Selecione o curso e a disciplina</p>
         <div id="dcurso">
             <select name="curso" id="curso">
-                <option value="C1">Curso01</option>
-                <option value="C2">Curso02</option>
-                <option value="C3">Curso03</option>
+                <option>Selecione o curso</option>
             </select>
         </div>
         <div id="ddisciplina">
             <select name="disciplina" id="disciplina">
-                <option value="D1">Disciplina01</option>
-                <option value="D2">Disciplina02</option>
-                <option value="D3">Disciplina03</option>
+                <option>Selecione a Disciplina</option>
             </select>
         </div>
         <div id="info">
@@ -32,13 +29,9 @@
         <div id="botao">
             <a href="../pages/page03.html"><button>CONTINUAR</button></a>
         </div>
-
-        <div id="botao">
-            <button id="pegarcurso" onclick="getCursos()">CONTINUAR</button>
-        </div>
     </section>
 
-    <script src="../script/getcursos.js"></script>
+    <script src="../script/getcursos.js" defer></script>
 
 </body>
 </html>
