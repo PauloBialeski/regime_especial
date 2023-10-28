@@ -28,7 +28,9 @@ function postDados(){
         fetch('https://regime-especial-default-rtdb.firebaseio.com/regimeespecial.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI', {
         method: 'POST',
         body: JSON.stringify(dados)
-        })      
+        })
+    
+        alert("Seus dados foram enviados!")
     })
 }
 
