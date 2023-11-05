@@ -1,3 +1,4 @@
+$.support.cors = true;
 //https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/cursos
 let pegarcurso = document.querySelector("#pegarcurso");
 let cursos = document.querySelector("#curso");
@@ -5,42 +6,41 @@ let disciplinas = document.querySelector("#disciplina");
 
 
 async function getCursos() {
-  const response = await fetch("https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/cursos.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI");
+  $(cursos).empty();
 
+  const response = await fetch("https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/cursos.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI");
   
   let data = await response.json();
 
-
-
-  data = Object.keys(data).map((array) => data[array]).map((curso) => {
+  data = Object.keys(data).forEach((item) => {
+    console.log(item);
     let option = document.createElement("option");
-    option.setAttribute("value", `C${cursos.length}`);
-    option.innerText = curso.nome
+    option.setAttribute("value", item);
+    option.innerText = data[item].nome
     cursos.appendChild(option);
-  });
-
+  })
+    
+  getDisciplinas();
   
 }
 async function getDisciplinas() {
+  $(disciplinas).empty();
+
+  if (cursos.options.length != 0){
+    let id = cursos.options[cursos.selectedIndex].value;
+    let response = await fetch("https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/cursos/"+ id +".json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI");
   
-
-  let response = await fetch("https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/cursos.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI");
-  
-  let data = await response.json();
-  for(var id in data){
-
-    let urlDisc = "https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/cursos/"+ id +"/disciplinas.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI"
-
-    let response = await fetch(urlDisc);
-    let urlDiscData = await response.json();
-    urlDiscData = Object.keys(urlDiscData).map((array) => urlDiscData[array]).map((disciplina) => {
+    let data = await response.json();
+    data = Object.keys(data.disciplinas).forEach((item) => {
       let option = document.createElement("option");
-      option.setAttribute("value", `C${disciplinas.length}`);
-      option.innerText = disciplina.nome
+      option.setAttribute("value", item);
+      option.innerText = data.disciplinas[item].nome;
       disciplinas.appendChild(option);
     });
+      
+    
   }
-
 }
-getCursos();
-getDisciplinas();
+$(document).ready(
+  getCursos()
+);
