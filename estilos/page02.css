@@ -11,12 +11,12 @@ section#campo1 {
     transform: translate(-50%, -50%);
 }
 
-section#campo1 > p {
+.paragrafo_select {
     text-align: center;
     font-size: 1em;
     color: white;
     font-weight: bolder;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 
 section#campo1 > div#dcurso {
@@ -53,7 +53,7 @@ section#campo1 > div#ddisciplina > select#disciplina {
     font-weight: bolder;
     color: #009045;
     box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
-    margin-bottom: 70px;
+    margin-bottom: 10px;
 }
 
 section#campo1 > div#ddisciplina > select#disciplina:focus {
@@ -61,25 +61,57 @@ section#campo1 > div#ddisciplina > select#disciplina:focus {
 }
 
 div#info {
-    width: 300px;
-    border-radius: 10px;
-    padding: 20px;
-    background-color: white;
     margin-bottom: 70px;
-    box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
 }
 
-div#info > p {
+#p_list_regimes {
+    color: #ffffff;
+    text-align: center;
+    text-decoration: underline;
+    margin: 10px;
+}
+#p_list_regimes:hover {
+    color: #8ce5b7;
+    cursor: pointer;
+}
+
+#tb_regimes{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+.tb_regimes_tr{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     color: #009045;
-    font-weight: bolder;
-    padding: 10px;
+    margin: 5px;
+}
+.tb_regimes_tr_td {
+    padding: 5px;
 }
 
-div#botao > a {
+.botao_regimes {  
+    width: 100px;
+    height: 20px;
+    margin: 5px;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
     text-decoration: none;
+    box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
+    color: #009045;
+}
+.botao_regimes:hover {
+    color: #ffffff;
+    background-color: #2ca969;
+    cursor: pointer;
 }
 
-div#botao > a > button {
+.botao {
     display: block;
     margin: auto;
     width: 200px;
@@ -94,4 +126,10 @@ div#botao > a > button {
     font-weight: bolder;
     font-size: 1em;
     text-decoration: none;
+}
+.botao:hover {
+    background-color: #2ca969;
+    color: #ffffff;
+    cursor: pointer;
+
 }

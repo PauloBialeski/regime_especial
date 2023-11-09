@@ -11,24 +11,25 @@
 </head>
 <body>
     <section id="campo1">
-        <p>Selecione o curso e a disciplina</p>
+        
         <div id="dcurso">
+            <p class="paragrafo_select">Selecione o curso:</p>
             <select name="curso" id="curso" onchange="getDisciplinas()">
-                <option>Selecione o Curso</option>
             </select>
         </div>
         <div id="ddisciplina">
+            <p class="paragrafo_select">Selecione a disciplina:</p>
             <select name="disciplina" id="disciplina">
-                <option>Selecione a Disciplina</option>
             </select>
         </div>
         <div id="info">
-            <p>Nesta disciplina:<br>6/10</p>
-            <p>Valor da disciplina:<br>R$8.000,00</p>
-            <p>Valor para cada aluno até o momento:<br>R$1.333,33</p>
+            <p id="p_list_regimes">Listar os regimes desta disciplina</p>
+            <table id="tb_regimes">
+
+            </table>
         </div>
-        <div id="botao">
-            <a href="../pages/page03.html"><button>CONTINUAR</button></a>
+        <div>
+            <button class="botao" onclick="loadForms()">CONTINUAR</button>
         </div>
     </section>
 
