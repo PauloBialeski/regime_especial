@@ -3,6 +3,9 @@
 body {
     position: relative;
 }
+.hidden-class {
+    display: none !important;
+}
 
 section#campo1 {
     position: absolute;
@@ -33,7 +36,7 @@ section#campo1 > div#dcurso > select#curso {
     text-align: center;
     font-size: 0.9em;
     font-weight: bolder;
-    color: #009045;
+    color: #23B569;
     box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
 }
 
@@ -51,7 +54,7 @@ section#campo1 > div#ddisciplina > select#disciplina {
     text-align: center;
     font-size: 0.9em;
     font-weight: bolder;
-    color: #009045;
+    color: #23B569;
     box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
     margin-bottom: 10px;
 }
@@ -87,7 +90,7 @@ div#info {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    color: #009045;
+    color: #23B569;
     margin: 5px;
 }
 .tb_regimes_tr_td {
@@ -107,7 +110,7 @@ div#info {
 }
 .botao_regimes:hover {
     color: #ffffff;
-    background-color: #2ca969;
+    background-color: #23B569;
     cursor: pointer;
 }
 
@@ -122,7 +125,7 @@ div#info {
     text-decoration: none;
     box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
 
-    color: #009045;
+    color: #23B569;
     font-weight: bolder;
     font-size: 1em;
     text-decoration: none;
@@ -132,4 +135,73 @@ div#info {
     color: #ffffff;
     cursor: pointer;
 
+}
+
+
+/* Estilização FORMS DE PREENCHIMENTO */
+#section_form {
+    display: flex;
+    flex-flow: column  nowrap;
+    align-items: center;
+}
+
+#section_form > p {
+    color: white;
+    font-size: 1.1em;
+    margin: 100px 0px 100px 0px;
+}
+
+div.dados {
+    margin-bottom: 20px;
+    height: 35px;
+    width: 305px;
+    border-radius: 10px;
+    background-color: #23B569;
+    box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
+}
+
+div.dados > p {
+    display: inline-block;
+    width: 78px;
+    padding: 8px 6px 6px 6px;
+    margin-right: 5px;
+    color: white;
+    font-weight: bolder;
+    text-align: center;
+    
+}
+
+div.dados > input , select {
+    border-radius: 0px 10px 10px 0px;
+    height: 35px;
+    width: calc(100% - 87.5px);
+    border: none;
+    padding: 4px;
+    font-size: 0.9em;
+    font-weight: bolder;
+    color: #009045;
+}
+
+div.dados > input , select:focus {
+    outline: 0;
+}
+input::placeholder {
+    color: #d3d3d3;
+}  
+
+#enviar_botao {
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+
+    width: 180px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+    box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
+
+    color: #009045;
+    font-weight: bolder;
+    font-size: 1em;
 }

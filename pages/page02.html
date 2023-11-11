@@ -6,7 +6,7 @@
     <title>Pagina 02</title>
     <link rel="stylesheet" href="../estilos/global_styles.css">
     <link rel="stylesheet" href="../estilos/page02.css">
-    <script src="http://code.jquery.com/jquery-1.11.2.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js" type="text/javascript"></script>
     
 </head>
 <body>
@@ -14,22 +14,50 @@
         
         <div id="dcurso">
             <p class="paragrafo_select">Selecione o curso:</p>
-            <select name="curso" id="curso" onchange="getDisciplinas()">
-            </select>
+            <select name="curso" id="curso" onchange="getDisciplinas()"></select>
         </div>
+        
         <div id="ddisciplina">
             <p class="paragrafo_select">Selecione a disciplina:</p>
-            <select name="disciplina" id="disciplina">
-            </select>
+            <select name="disciplina" id="disciplina"></select>
         </div>
+
         <div id="info">
             <p id="p_list_regimes">Listar os regimes desta disciplina</p>
             <table id="tb_regimes">
-
+                <tr  class="tb_regimes_tr hidden-class">
+                    <td class="tb_regimes_td"><b class="paragrafo_regimes">Nome da Disciplina</b></td>
+                    <td class="tb_regimes_td"><b class="paragrafo_regimes">Opções</b></td>                         
+                </tr>
             </table>
         </div>
         <div>
-            <button class="botao" onclick="loadForms()">ENVIAR</button>
+            <button id="bt_inscrever" class="botao" onclick="loadForms()">Inscrever-se</button>
+            <section id="section_form" class="hidden-class" autocomplete="off">
+                <div class="dados">
+                    <p>RA:</p>
+                    <input type="text" name="ra" id="ra" placeholder="Digite seu RA">
+                </div>
+                <div class="dados">
+                    <p>Nome:</p>
+                    <input type="text" name="nome" id="nome" placeholder="Digite seu nome">
+                </div>
+                <div class="dados">
+                    <p>Contato:</p>
+                    <input type="text" name="contato" id="contato" placeholder="Digite seu telefone">
+                </div>
+                <div class="dados">
+                    <p>Semestre:</p>
+                    <input type="text" name="semestre" id="semestre" placeholder="Digite seu semestre">
+                </div>
+                <div class="dados">
+                    <p>Período:</p>
+                    <select name="periodo" id="periodo">
+                        <option value="mat">Matutino</option>
+                        <option value="not">Noturno</option>
+                    </select>
+                <button id="enviar_botao">Me inscrever</button>
+            </section>
         </div>
     </section>
 
