@@ -30,6 +30,12 @@ div#botao > a {
     text-decoration: none;
 }
 
+div#botao > a > button:hover {
+    background-color: #2ca969;
+    color: #fff;
+    cursor: pointer;
+}
+
 div#botao > a > button {
     display: block;
     margin: auto;
