@@ -44,7 +44,8 @@ async function getDisciplinas() {
   }
 }
 
-function loadRegimes(_id_disciplina){    
+function loadRegimes(_id_disciplina){
+  $('#regimes').empty();    
   console.log('loadRegimes');
   $.ajax({
       type:'GET',
