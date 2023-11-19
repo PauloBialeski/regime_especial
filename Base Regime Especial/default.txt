@@ -18,3 +18,59 @@
                     </div>
                 </div>
             </div>
+
+
+
+
+
+             <div class="col-4">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                          <h5 class="card-title mb-3 text-center">Banco de Dados</h5>
+                          <h6 class="card-subtitle mb-3 text-body-secondary">Responsavel: Gilberto Junior</h6>
+                          <div id="content-alunos collapse" id="collapseAlunos">
+                        
+                              <div class="collapse" id="collapseAlunos">
+                                  <ul id="ul-alunos" class="list-group list-group-flush">
+                                  </ul>
+                              </div>                          
+                          </div>
+
+                        <div class="card-links">
+                            <button class="card-link card-btn btn-arrow" data-bs-toggle="collapse" data-bs-target="#collapseAlunos" aria-expanded="false" aria-controls="collapseExample" id="'+item+'" onclick="ObterAlunosRegime()">
+                                <ion-icon name="chevron-down-outline"></ion-icon>
+                            </button>
+                            <button class="card-link card-btn"  data-bs-toggle="modal" data-bs-target="#increver-regime" onclick="inscreverRegime('+item+')">
+                                <ion-icon name="add-outline"></ion-icon>
+                            </button>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+                     <form class="col-12" autocomplete="off">
+                    <div class="mb-3">
+                        <label for="ra-novo-rgm" class="form-label">RA:</label>
+                        <input type="number" class="form-control" id="ra-novo-rgm">
+                    <div class="mb-3">
+                        <label for="nome-novo-rgm" class="form-label">Nome Completo:</label>
+                        <input type="text" class="form-control" id="nome-novo-rgm">
+                    </div>
+                    <div class="mb-3">
+                        <label for="contato-novo-rgm" class="form-label">Contato:</label>
+                        <input type="number" class="form-control" id="contato-novo-rgm">
+                    </div>
+                    <div class="mb-3">
+                        <label for="semestre-novo-rgm" class="form-label">Semestre:</label>
+                        <input type="number" class="form-control" id="semestre-novo-rgm">
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="periodo-novo-rgm">
+                            <option value="matutino">Matutino</option>
+                            <option value="noturno">Noturno</option>
+                        </select>
+                        <label for="periodo-novo-rgm">Selecione o periodo</label>
+                    </div>
+                  </form>

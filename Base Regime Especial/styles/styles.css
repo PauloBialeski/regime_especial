@@ -5,6 +5,15 @@
 body{
     box-sizing: border-box;
 }
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    
+}
+input[type=number] { 
+   -moz-appearance: textfield;
+   appearance: textfield;
+
+}
 
 .navbar{
     background-color: #33A457 !important;
@@ -32,6 +41,24 @@ main{
 .card-btn {
     border: none;
     background-color: #ffffff;
+    display: flex;
+}
+.card-btn ion-icon{
+    font-size: 30px;
+    color: #33A457;
+    align-self: center;
+
+}
+.btn-rotate {
+    transform: rotate(180deg);
+}
+.modal-btn{
+    border: #33A457;
+    background-color: #33A457;
+    color: #fff;
+}
+.modal-btn:hover{
+    background-color: #2a934b;
 }
 
 .footer {

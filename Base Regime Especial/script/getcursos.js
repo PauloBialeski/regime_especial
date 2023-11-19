@@ -54,8 +54,7 @@ function loadRegimes(_id_disciplina){
       },        
       success: function(data){
           Object.keys(data).forEach(
-              function(item){     
-                console.log(item);                            
+              function(item){                                
                   $('#regimes').append(
                     '<div class="col-4">'+
                         '<div class="card mb-3">'+
@@ -63,28 +62,29 @@ function loadRegimes(_id_disciplina){
                               '<h5 class="card-title mb-3 text-center">'+data[item].disciplina+'</h5>'+
                               '<h6 class="card-subtitle mb-3 text-body-secondary">Responsavel: Gilberto Junior</h6>'+
                               '<div id="content-alunos">'+
-                              '<ul id="ul-alunos" class="list-group list-group-flush">'+                        
-                              '</ul>'+                             
+
+                                '<div class="collapse" id="collapse-'+item+'">'+
+                                  '<ul id="ul-alunos-'+item+'" class="list-group list-group-flush">'+
+                                  '</ul>'+
+                                '</div>'+                                                     
                               '</div>'+
 
                               '<div class="card-links">'+
-                                    '<button class="card-link card-btn back-btn" id="'+item+'" onclick="ObterAlunosRegime('+"'"+item+"'"+')">'+
-                                    '<svg xmlns="http://www.w3.org/2000/svg" color="#33A457" width="30" height="30" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">'+
-                                      '<path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>'+
-                                    '</svg>'+
+                                    '<button class="card-link card-btn" id="btn-arrow-'+item+'" data-bs-toggle="collapse" data-bs-target="#collapse-'+item+'" aria-expanded="false" aria-controls="collapseExample" id="'+item+'">'+
+                                      '<ion-icon name="chevron-down-outline"></ion-icon>'+
                                     '</button>'+
                                     '<button class="card-link card-btn" data-bs-toggle="modal" data-bs-target="#increver-regime" onclick="inscreverRegime('+item+')">'+
-                                        '<svg xmlns="http://www.w3.org/2000/svg" color="#33A457" width="30" height="30" fill="currentColor" class="bi bi-patch-plus-fill" viewBox="0 0 16 16">'+
-                                            '<path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z"/>'+
-                                        '</svg>'+
+                                      '<ion-icon name="add-outline"></ion-icon>'+
                                     '</button>'+
                                 '</div>'+
                             '</div>'+
                           '</div>'+
                     '</div>'
-                  );                        
+                  );
+                ObterAlunosRegime(item)                                           
               }
           )
+        
       },
       error: function(data){
           console.log(data);            
@@ -94,7 +94,11 @@ function loadRegimes(_id_disciplina){
 
 function ObterAlunosRegime(_id_regime){
   console.log("Obter Alunos do Regime");
-
+  $('#btn-arrow-'+_id_regime+'').click(
+    function () {
+      $('#btn-arrow-'+_id_regime+'').toggleClass('btn-rotate');
+    }  
+  );
   $.ajax({
       type:'GET',
       url:'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes/'+_id_regime+'.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI',
@@ -104,45 +108,24 @@ function ObterAlunosRegime(_id_regime){
       
       },        
       success: function(data){   
-          $('#content-alunos').prepend(
+          $('#collapse-'+_id_regime+'').prepend(
               '<h6 class="card-text">Alunos cadastrados neste regime: '+Object.keys(data.alunos).length+'/10</h6>'
           );
           
           Object.keys(data.alunos).forEach(
               function(item){         
                   
-                  $('#ul-alunos').append(
+                  $('#ul-alunos-'+_id_regime+'').append(
                       '<li class="list-group-item">'+data.alunos[item].nome+'</li>'                      
-                  );                        
+                  );                         
               }
-          )
-        $('.back-btn').replaceWith(
-          '<button class="card-link card-btn back-btn back-alunos" id="'+_id_regime+'" onclick="backAlunos('+"'"+_id_regime+"'"+')">'+
-            '<svg xmlns="http://www.w3.org/2000/svg" color="#33A457" width="30" height="30" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">'+
-              '<path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>'+
-            '</svg>'+
-          '</button>'
-        );
+          )    
       },
       error: function(data){
           console.log(data);            
       }
   })  
 }
-
-
-function backAlunos(__id_regime){
-  console.log("Back Alunos");
-    $('#content-alunos').empty();
-    $('#'+__id_regime+'').replaceWith(
-      '<button class="card-link card-btn back-btn" id="'+__id_regime+'" onclick="ObterAlunosRegime('+"'"+__id_regime+"'"+')">'+
-        '<svg xmlns="http://www.w3.org/2000/svg" color="#33A457" width="30" height="30" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">'+
-          '<path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>'+
-        '</svg>'+
-      '</button>'
-    )
-}    
-
 
 function incluirRegime(_data){
   $.ajax({
@@ -171,15 +154,15 @@ function incluirRegime(_data){
 
 function incluirAlunoRegime(id_regime){
 
-  var selectTurno = document.getElementById('periodo');
+  var selectTurno = document.getElementById('periodo-novo-rgm');
   var turno = selectTurno.options[selectTurno.selectedIndex].text;
 
   _data = {
-      "contato": document.getElementById('contato').value,
+      "contato": document.getElementById('contato-novo-rgm').value,
       "data": new Date(),
-      "nome": document.getElementById('nome').value,
-      "registro_academico": document.getElementById('ra').value,
-      "semestre": document.getElementById('semestre').value,
+      "nome": document.getElementById('nome-novo-rgm').value,
+      "registro_academico": document.getElementById('ra-novo-rgm').value,
+      "semestre": document.getElementById('semestre-novo-rgm').value,
       "turno": turno
   }
 
@@ -209,24 +192,18 @@ function incluirAlunoRegime(id_regime){
 }
 
 
-
 $(document).ready(
   getCursos()
 );
 
-$('#p_list_regimes').click(
-  function (){
-      var selectDisciplina = document.getElementById('disciplina'); 
-      loadRegimes(selectDisciplina.options[selectDisciplina.selectedIndex].value);
-  }    
-)
-
-$('#enviar_botao').click(
+$('#btn-insc-nv-rgm').click(
   function (){
       console.log('Novo Regime');
       
-      var selectCursos = document.getElementById('curso'); 
-      var selectDisciplina = document.getElementById('disciplina'); 
+      var selectCursos = document.querySelector('#curso'); 
+      var selectDisciplina = document.querySelector('#disciplina');
+      console.log(selectCursos);
+      console.log(selectDisciplina);
 
       data = {
           "curso": selectCursos.options[selectCursos.selectedIndex].text,
