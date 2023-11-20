@@ -17,9 +17,16 @@ input[type=number] {
 
 .navbar{
     background-color: #33A457 !important;
-    display: flex;
-    justify-content: space-around !important;
+
 }
+
+@media (max-width: 576px) {
+    .navbar div{
+        display: flex !important;
+        justify-content: space-around !important;
+    }
+}
+
 #logomarca {
     width: auto;
     height: 60px;
@@ -29,10 +36,11 @@ input[type=number] {
     font-style: italic;
 }
 main{
+    position: relative;
+    min-height: 100vh;
     width: 80%;
     margin: 0 10% 0 10%;
-    padding: 10px 0 10px 0;
-    height: 100%;
+    padding: 10px 0 80px 0;
 }
 .card-links {
     display: flex;

@@ -56,7 +56,7 @@ function loadRegimes(_id_disciplina){
           Object.keys(data).forEach(
               function(item){                                
                   $('#regimes').append(
-                    '<div class="col-4">'+
+                    '<div class="col-12 col-md-6 col-lg-4">'+
                         '<div class="card mb-3">'+
                             '<div class="card-body">'+
                               '<h5 class="card-title mb-3 text-center">'+data[item].disciplina+'</h5>'+
