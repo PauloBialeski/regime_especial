@@ -1,9 +1,6 @@
 $.support.cors = true;
-//https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/cursos
-let pegarcurso = document.querySelector("#pegarcurso");
 let cursos = document.querySelector("#curso");
 let disciplinas = document.querySelector("#disciplina");
-
 
 async function getCursos() {
   $(cursos).empty();
@@ -40,13 +37,13 @@ async function getDisciplinas() {
       disciplinas.appendChild(option);
     });
       
-    
   }
+  loadRegimes(disciplinas.options[disciplinas.selectedIndex].value);
 }
 
-function loadRegimes(_id_disciplina){
-  $('#regimes').empty();    
-  console.log('loadRegimes');
+function loadRegimes(_id_disciplina){    
+  _id_disciplina = disciplinas.options[disciplinas.selectedIndex].value;
+  $('#regimes').empty();
   $.ajax({
       type:'GET',
       url:'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI&orderBy="id_disciplina"&equalTo="'+_id_disciplina+'"',
@@ -56,20 +53,38 @@ function loadRegimes(_id_disciplina){
       
       },        
       success: function(data){
-          let tb_regimes_tr = document.querySelector('.tb_regimes_tr')                                
-          tb_regimes_tr.classList.remove('hidden-class');               
-
           Object.keys(data).forEach(
-              function(item){                                 
-                  $('#tb_regimes').append(
-                      '<tr class="tb_regimes_tr">'+
-                      '<td class="tb_regimes_tr_td">'+data[item].disciplina+'</td>'+ 
-                      '<td class="tb_regimes_tr_td"><button class="botao_regimes" id="'+item+'" onclick="ObterAlunosRegime('+"'"+item+"'"+')">Ver Alunos</button></td>'+
-                      '<td class="tb_regimes_tr_td"><button class="botao_regimes" onclick="InscreverRegime()">Me Inscrever</button></td>'+
-                      '</tr>'
-                  );                        
+              function(item){                                
+                  $('#regimes').append(
+                    '<div class="col-4">'+
+                        '<div class="card mb-3">'+
+                            '<div class="card-body">'+
+                              '<h5 class="card-title mb-3 text-center">'+data[item].disciplina+'</h5>'+
+                              '<h6 class="card-subtitle mb-3 text-body-secondary">Responsavel: Gilberto Junior</h6>'+
+                              '<div id="content-alunos">'+
+
+                                '<div class="collapse" id="collapse-'+item+'">'+
+                                  '<ul id="ul-alunos-'+item+'" class="list-group list-group-flush">'+
+                                  '</ul>'+
+                                '</div>'+                                                     
+                              '</div>'+
+
+                              '<div class="card-links">'+
+                                    '<button class="card-link card-btn" id="btn-arrow-'+item+'" data-bs-toggle="collapse" data-bs-target="#collapse-'+item+'" aria-expanded="false" aria-controls="collapseExample" id="'+item+'">'+
+                                      '<ion-icon name="chevron-down-outline"></ion-icon>'+
+                                    '</button>'+
+                                    '<button class="card-link card-btn" data-bs-toggle="modal" data-bs-target="#increver-regime" onclick="inscreverRegime('+item+')">'+
+                                      '<ion-icon name="add-outline"></ion-icon>'+
+                                    '</button>'+
+                                '</div>'+
+                            '</div>'+
+                          '</div>'+
+                    '</div>'
+                  );
+                ObterAlunosRegime(item)                                           
               }
           )
+        
       },
       error: function(data){
           console.log(data);            
@@ -77,11 +92,39 @@ function loadRegimes(_id_disciplina){
   })             
 }
 
-function loadForms(){
-  let botaoinscrever = document.querySelector('#bt_inscrever')
-  botaoinscrever.classList.add('hidden-class')
-  let section = document.querySelector("#section_form")
-  section.classList.remove('hidden-class')
+function ObterAlunosRegime(_id_regime){
+  console.log("Obter Alunos do Regime");
+  $('#btn-arrow-'+_id_regime+'').click(
+    function () {
+      $('#btn-arrow-'+_id_regime+'').toggleClass('btn-rotate');
+    }  
+  );
+  $.ajax({
+      type:'GET',
+      url:'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes/'+_id_regime+'.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI',
+      contentType: "application/json",
+      crossDomain: true,
+      headers:{
+      
+      },        
+      success: function(data){   
+          $('#collapse-'+_id_regime+'').prepend(
+              '<h6 class="card-text">Alunos cadastrados neste regime: '+Object.keys(data.alunos).length+'/10</h6>'
+          );
+          
+          Object.keys(data.alunos).forEach(
+              function(item){         
+                  
+                  $('#ul-alunos-'+_id_regime+'').append(
+                      '<li class="list-group-item">'+data.alunos[item].nome+'</li>'                      
+                  );                         
+              }
+          )    
+      },
+      error: function(data){
+          console.log(data);            
+      }
+  })  
 }
 
 function incluirRegime(_data){
@@ -111,15 +154,15 @@ function incluirRegime(_data){
 
 function incluirAlunoRegime(id_regime){
 
-  var selectTurno = document.getElementById('periodo');
+  var selectTurno = document.getElementById('periodo-novo-rgm');
   var turno = selectTurno.options[selectTurno.selectedIndex].text;
 
   _data = {
-      "contato": document.getElementById('contato').value,
+      "contato": document.getElementById('contato-novo-rgm').value,
       "data": new Date(),
-      "nome": document.getElementById('nome').value,
-      "registro_academico": document.getElementById('ra').value,
-      "semestre": document.getElementById('semestre').value,
+      "nome": document.getElementById('nome-novo-rgm').value,
+      "registro_academico": document.getElementById('ra-novo-rgm').value,
+      "semestre": document.getElementById('semestre-novo-rgm').value,
       "turno": turno
   }
 
@@ -149,24 +192,18 @@ function incluirAlunoRegime(id_regime){
 }
 
 
-
 $(document).ready(
   getCursos()
 );
 
-$('#p_list_regimes').click(
-  function (){
-      var selectDisciplina = document.getElementById('disciplina'); 
-      loadRegimes(selectDisciplina.options[selectDisciplina.selectedIndex].value);
-  }    
-)
-
-$('#enviar_botao').click(
+$('#btn-insc-nv-rgm').click(
   function (){
       console.log('Novo Regime');
       
-      var selectCursos = document.getElementById('curso'); 
-      var selectDisciplina = document.getElementById('disciplina'); 
+      var selectCursos = document.querySelector('#curso'); 
+      var selectDisciplina = document.querySelector('#disciplina');
+      console.log(selectCursos);
+      console.log(selectDisciplina);
 
       data = {
           "curso": selectCursos.options[selectCursos.selectedIndex].text,
