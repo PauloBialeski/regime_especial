@@ -1,207 +1,83 @@
-@charset "UTF-8";
-
-body {
-    position: relative;
+* {
+    padding: 0;
+    margin: 0;
 }
-.hidden-class {
-    display: none !important;
+body{
+    box-sizing: border-box;
 }
-
-section#campo1 {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.paragrafo_select {
-    text-align: center;
-    font-size: 1em;
-    color: white;
-    font-weight: bolder;
-    margin-bottom: 10px;
-}
-
-section#campo1 > div#dcurso {
-    margin-bottom: 15px;
-}
-
-section#campo1 > div#dcurso > select#curso {
-    display: block;
-    margin: auto;
-    height: 50px;
-    width: 200px;
-    border: none;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 0.9em;
-    font-weight: bolder;
-    color: #23B569;
-    box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
-}
-
-section#campo1 > div#dcurso > select#curso:focus {
-    outline: 0;
-}
-
-section#campo1 > div#ddisciplina > select#disciplina {
-    display: block;
-    margin: auto;
-    height: 50px;
-    width: 200px;
-    border: none;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 0.9em;
-    font-weight: bolder;
-    color: #23B569;
-    box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
-    margin-bottom: 10px;
-}
-
-section#campo1 > div#ddisciplina > select#disciplina:focus {
-    outline: 0;
-}
-
-div#info {
-    margin-bottom: 70px;
-}
-
-#p_list_regimes {
-    color: #ffffff;
-    text-align: center;
-    text-decoration: underline;
-    margin: 10px;
-}
-#p_list_regimes:hover {
-    color: #8ce5b7;
-    cursor: pointer;
-}
-
-#tb_regimes{
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffffff;
-    border-radius: 10px;
-}
-.tb_regimes_tr{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    color: #23B569;
-    margin: 5px;
-}
-.tb_regimes_tr_td {
-    padding: 5px;
-}
-
-.botao_regimes {  
-    width: 100px;
-    height: 20px;
-    margin: 5px;
-    border-radius: 10px;
-    border: none;
-    background-color: white;
-    text-decoration: none;
-    box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
-    color: #009045;
-}
-.botao_regimes:hover {
-    color: #ffffff;
-    background-color: #23B569;
-    cursor: pointer;
-}
-
-.botao {
-    display: block;
-    margin: auto;
-    width: 200px;
-    height: 60px;
-    border-radius: 10px;
-    border: none;
-    background-color: white;
-    text-decoration: none;
-    box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
-
-    color: #23B569;
-    font-weight: bolder;
-    font-size: 1em;
-    text-decoration: none;
-}
-.botao:hover {
-    background-color: #2ca969;
-    color: #ffffff;
-    cursor: pointer;
-
-}
-
-
-/* Estilização FORMS DE PREENCHIMENTO */
-#section_form {
-    display: flex;
-    flex-flow: column  nowrap;
-    align-items: center;
-}
-
-#section_form > p {
-    color: white;
-    font-size: 1.1em;
-    margin: 100px 0px 100px 0px;
-}
-
-div.dados {
-    margin-bottom: 20px;
-    height: 35px;
-    width: 305px;
-    border-radius: 10px;
-    background-color: #23B569;
-    box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
-}
-
-div.dados > p {
-    display: inline-block;
-    width: 78px;
-    padding: 8px 6px 6px 6px;
-    margin-right: 5px;
-    color: white;
-    font-weight: bolder;
-    text-align: center;
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
     
 }
+input[type=number] { 
+   -moz-appearance: textfield;
+   appearance: textfield;
 
-div.dados > input , select {
-    border-radius: 0px 10px 10px 0px;
-    height: 35px;
-    width: calc(100% - 87.5px);
-    border: none;
-    padding: 4px;
-    font-size: 0.9em;
-    font-weight: bolder;
-    color: #009045;
 }
 
-div.dados > input , select:focus {
-    outline: 0;
+.navbar{
+    background-color: #33A457 !important;
+    display: flex;
+    justify-content: space-around !important;
 }
-input::placeholder {
-    color: #d3d3d3;
-}  
-
-#enviar_botao {
-    display: block;
-    margin: auto;
-    margin-top: 50px;
-
-    width: 180px;
-    height: 50px;
-    border-radius: 10px;
+#logomarca {
+    width: auto;
+    height: 60px;
+}
+.nav-h2 {
+    color: white;
+    font-style: italic;
+}
+main{
+    width: 80%;
+    margin: 0 10% 0 10%;
+    padding: 10px 0 10px 0;
+    height: 100%;
+}
+.card-links {
+    display: flex;
+    justify-content: space-between;
+}
+.card-btn {
     border: none;
+    background-color: #ffffff;
+    display: flex;
+}
+.card-btn ion-icon{
+    font-size: 30px;
+    color: #33A457;
+    align-self: center;
+
+}
+.btn-rotate {
+    transform: rotate(180deg);
+}
+.modal-btn{
+    border: #33A457;
+    background-color: #33A457;
+    color: #fff;
+}
+.modal-btn:hover{
+    background-color: #2a934b;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80px;
+    background-color: #33A457;
+}
+.btn-nv-rgm {
+    width: 60%;
     background-color: white;
-    box-shadow: 3px 4px 7px 0px rgba(0, 0, 0, 0.267);
-
-    color: #009045;
-    font-weight: bolder;
-    font-size: 1em;
+    color: #33A457;
+    border-radius: 10px;
+    border: #33A457;
+    height: 60px;
+    font-size: 2em;
+    font-style: italic;
 }
