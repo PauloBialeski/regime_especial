@@ -57,6 +57,31 @@ main{
     align-self: center;
 
 }
+
+.card-btn-finalizar{
+    background-color: #a83434;
+    border-radius: 10px;
+    border: none;
+    padding: 0 10px;
+    color: #ffffff;
+    width: auto;
+}
+
+.card-btn-finalizar:hover{
+    background-color: #912424;
+}
+
+.card-btn-insc {
+    background-color: #33A457;
+    border-radius: 10px;
+    border: none;
+    padding: 0 10px;
+    color: #ffffff;
+    width: auto;
+}
+.card-btn-insc:hover{
+    background-color: #2a934b;
+}
 .btn-rotate {
     transform: rotate(180deg);
 }
@@ -88,4 +113,10 @@ main{
     height: 60px;
     font-size: 2em;
     font-style: italic;
+}
+.btn-fechar{
+    background-color: #a83434;
+}
+.btn-fechar:hover{
+    background-color: #912424;
 }

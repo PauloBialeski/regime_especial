@@ -71,11 +71,16 @@ function loadRegimes(_id_disciplina){
 
                               '<div class="card-links">'+
                                     '<button class="card-link card-btn" id="btn-arrow-'+item+'" data-bs-toggle="collapse" data-bs-target="#collapse-'+item+'" aria-expanded="false" aria-controls="collapseExample" id="'+item+'">'+
-                                      '<ion-icon name="chevron-down-outline"></ion-icon>'+
+                                    '<ion-icon name="chevron-down-outline"></ion-icon>'+
                                     '</button>'+
-                                    '<button class="card-link card-btn" data-bs-toggle="modal" data-bs-target="#increver-regime" onclick="inscreverRegime('+"'"+item+"'"+')">'+
-                                      '<ion-icon name="add-outline"></ion-icon>'+
-                                    '</button>'+
+                                    '<div class="btns-options">'+
+                                      '<button class="card-link card-btn-finalizar col-6" data-bs-toggle="modal" data-bs-target="#finalizar-regime" onclick="finalizarRegime('+"'"+item+"'"+')">'+
+                                        'Finalizar'+
+                                      '</button>'+
+                                      '<button class="card-link card-btn-insc col-6" data-bs-toggle="modal" data-bs-target="#increver-regime" onclick="inscreverRegime('+"'"+item+"'"+')">'+
+                                        'Inscrever-se'+
+                                      '</button>'+
+                                    '</div>'+ 
                                 '</div>'+
                             '</div>'+
                           '</div>'+
