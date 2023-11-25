@@ -50,22 +50,22 @@
                       <h1 class="modal-title fs-5" id="inscricaoregime">Inscreva-se no Regime</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        <form class="col-12" autocomplete="off">
+                    <div class="modal-body limit-rgm">
+                        <form class="col-12 modal-incs-rgm" autocomplete="off">
                         <div class="mb-3">
-                            <label for="ra" class="form-label">RA:</label>
+                            <label for="ra" class="form-label">RA</label>
                             <input type="number" class="form-control" id="ra" required>
                         </div>
                         <div class="mb-3">
-                            <label for="nome" class="form-label">Nome Completo:</label>
+                            <label for="nome" class="form-label">Nome Completo</label>
                             <input type="text" class="form-control" id="nome" required>
                         </div>
                         <div class="mb-3">
-                            <label for="contato" class="form-label">Contato:</label>
+                            <label for="contato" class="form-label">Contato</label>
                             <input type="number" class="form-control" id="contato" required>
                         </div>
                         <div class="mb-3">
-                            <label for="semestre" class="form-label">Semestre:</label>
+                            <label for="semestre" class="form-label">Semestre</label>
                             <input type="number" class="form-control" id="semestre" required>
                         </div>
                         <div class="form-floating mb-3">
@@ -75,11 +75,34 @@
                             </select>
                             <label for="periodo">Selecione o periodo</label>
                         </div>
+                    </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary btn-fechar" data-bs-dismiss="modal">Fechar</button>
+                      <button type="submit" class="btn btn-primary modal-btn" id="insc-rgm">Inscrever-se</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="finalizar-regime" tabindex="-1" aria-labelledby="finalizarregime" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="finalizarregime">Finalizar Regime</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="col-12" autocomplete="off">
+                        <div class="mb-3">
+                            <label for="ra" class="form-label">Insira seu RA</label>
+                            <input type="number" class="form-control" id="ra-finalizar" required>
+                        </div>
                       </form>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary btn-fechar" data-bs-dismiss="modal">Fechar</button>
-                      <button type="button" class="btn btn-primary modal-btn" id="insc-rgm">Inscrever-se</button>
+                      <button type="button" class="btn btn-primary modal-btn" id="final-rgm">Finalizar regime</button>
                     </div>
                   </div>
                 </div>
@@ -93,21 +116,22 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <div class="nv-rgm-curso-disc border-bottom mb-2"></div>
                         <form class="col-12" autocomplete="off">
                             <div class="mb-3">
-                                <label for="ra-novo-rgm" class="form-label">RA:</label>
+                                <label for="ra-novo-rgm" class="form-label">RA</label>
                                 <input type="number" class="form-control" id="ra-novo-rgm" required>
                             </div>
                             <div class="mb-3">
-                                <label for="nome-novo-rgm" class="form-label">Nome Completo:</label>
+                                <label for="nome-novo-rgm" class="form-label">Nome Completo</label>
                                 <input type="text" class="form-control" id="nome-novo-rgm" required>
                             </div>
                             <div class="mb-3">
-                                <label for="contato-novo-rgm" class="form-label">Contato:</label>
-                                <input type="number" class="form-control" id="contato-novo-rgm" required>
+                                <label for="contato-novo-rgm" class="form-label">Contato</label>
+                                <input type="text" class="form-control" id="contato-novo-rgm" required>
                             </div>
                             <div class="mb-3">
-                                <label for="semestre-novo-rgm" class="form-label">Semestre:</label>
+                                <label for="semestre-novo-rgm" class="form-label">Semestre</label>
                                 <input type="number" class="form-control" id="semestre-novo-rgm" required>
                             </div>
                             <div class="form-floating mb-3">
@@ -118,10 +142,8 @@
                                 <label for="periodo-novo-rgm">Selecione o periodo</label>
                             </div>
                           </form>
-                          <p>O regime será criado na disciplina selecionada.</p>
                     </div>
-                    <div class="modal-footer">
-                        
+                    <div class="modal-footer"> 
                       <button type="button" class="btn btn-secondary btn-fechar" data-bs-dismiss="modal">Fechar</button>
                       <button type="button" id="btn-insc-nv-rgm" class="btn btn-primary modal-btn">Novo regime</button>
                     </div>

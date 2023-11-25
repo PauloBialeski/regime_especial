@@ -14,6 +14,9 @@ input[type=number] {
    appearance: textfield;
 
 }
+.hide{
+    display: none;
+}
 
 .navbar{
     background-color: #33A457 !important;
