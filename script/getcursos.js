@@ -10,7 +10,6 @@ async function getCursos() {
   let data = await response.json();
 
   data = Object.keys(data).forEach((item) => {
-    console.log(item);
     let option = document.createElement("option");
     option.setAttribute("value", item);
     option.innerText = data[item].nome
@@ -20,7 +19,6 @@ async function getCursos() {
   getDisciplinas();
   
 }
-
 
 async function getDisciplinas() {
   $(disciplinas).empty();
@@ -60,7 +58,7 @@ function loadRegimes(_id_disciplina){
                         '<div class="card mb-3">'+
                             '<div class="card-body">'+
                               '<h5 class="card-title mb-3 text-center">'+data[item].disciplina+'</h5>'+
-                              '<h6 class="card-subtitle mb-1 text-body-secondary">Responsavel: Gilberto Junior</h6>'+
+                              '<h6 class="card-subtitle mb-1 text-body-secondary" id="resp-'+item+'">Responsavel: Nome Responsável</h6>'+
                               '<h6 class="mb-3 text-body-secondary">Alunos cadastrados neste regime: '+Object.keys(data[item].alunos).length+'/10</h6>'+
                               '<div id="content-alunos">'+
 
@@ -99,7 +97,6 @@ function loadRegimes(_id_disciplina){
 }
 
 function ObterAlunosRegime(_id_regime){
-  console.log("Obter Alunos do Regime");
   $('#btn-arrow-'+_id_regime+'').click(
     function () {
       $('#btn-arrow-'+_id_regime+'').toggleClass('btn-rotate');
@@ -113,19 +110,17 @@ function ObterAlunosRegime(_id_regime){
       headers:{
       
       },        
-      success: function(data){   
-          $('#collapse-'+_id_regime+'').prepend(
-              '<h6 class="card-text">Alunos cadastrados neste regime: '+Object.keys(data.alunos).length+'/10</h6>'
-          );
-          
+      success: function(data){
+          $('#resp-'+_id_regime+'').text(
+            "Responsável: "+Object.values(data.alunos)[0].nome
+          )
+
           Object.keys(data.alunos).forEach(
-              function(item){         
-                  
+              function(item){          
                   $('#ul-alunos-'+_id_regime+'').append(
                       '<li class="list-group-item">'+data.alunos[item].nome+'</li>'                      
-                  );                         
-              }
-          )    
+                  );              
+              })
       },
       error: function(data){
           console.log(data);            
@@ -134,28 +129,34 @@ function ObterAlunosRegime(_id_regime){
 }
 
 function incluirRegime(_data){
-  $.ajax({
-      type:'POST',
-      url:'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI',
-      contentType: "application/json",
-      crossDomain: true,
-      headers:{
-      
-      },
-      data:JSON.stringify(_data) ,
-      success: function(data){
-          alert('Regime incluído com sucesso!');
-                  
-          var id_regime = data.name;
-
-          console.log(id_regime);
-          
-          incluirAlunoRegime(id_regime);
-      },
-      error: function(data){
-          console.log(data);            
-      }
-  })   
+  if($("#ra-novo-rgm").val() === ""){
+    alert("Por favor, preencha seu registro academico!")
+  }else if($("#nome-novo-rgm").val() === ""){
+    alert("Por favor, preencha seu nome!")
+  }else if($("#contato-novo-rgm").val() === ""){
+    alert("Por favor, preencha seu contato!")
+  }else if($("#semestre-novo-rgm").val() === ""){
+    alert("Por favor, preencha seu semestre!")
+  }else {
+    $.ajax({
+        type:'POST',
+        url:'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI',
+        contentType: "application/json",
+        crossDomain: true,
+        headers:{
+        
+        },
+        data:JSON.stringify(_data) ,
+        success: function(data){
+              var id_regime = data.name;
+              alert('Regime incluído com sucesso!');
+              incluirAlunoRegime(id_regime);   
+        },
+        error: function(data){
+            console.log(data);            
+        }
+    })
+  }   
 }
 
 function incluirAlunoRegime(id_regime){
@@ -164,6 +165,7 @@ function incluirAlunoRegime(id_regime){
   var turno = selectTurno.options[selectTurno.selectedIndex].text;
 
   _data = {
+    
       "contato": document.getElementById('contato-novo-rgm').value,
       "data": new Date(),
       "nome": document.getElementById('nome-novo-rgm').value,
@@ -171,9 +173,8 @@ function incluirAlunoRegime(id_regime){
       "semestre": document.getElementById('semestre-novo-rgm').value,
       "turno": turno
   }
-
+  
   console.log(_data);
-
   $.ajax({
       type:'POST',
       url:'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes/'+id_regime+'/alunos.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI',
@@ -222,27 +223,36 @@ function inscreverRegime(__id_regime){
                     "turno": turno
                   }
                   
-                  $.ajax({
-                    type:'POST',
-                    url:'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes/'+__id_regime+'/alunos.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI',
-                    contentType: "application/json",
-                    crossDomain: true,
-                    headers:{
-                    
-                    },
-                    data:JSON.stringify(__data) ,
-                    success: function(data){
-                        alert('Aluno incluido no regime');
-                        console.log(data);
-                        location.reload();
-                    },
-                    error: function(data){
-                        console.log(data);            
-                    }
-              
-                    
-                }) 
+                  if($("#ra").val() === ""){
+                    alert("Por favor, preencha seu registro academico!")
+                  }else if($("#nome").val() === ""){
+                    alert("Por favor, preencha seu nome!")
+                  }else if($("#contato").val() === ""){
+                    alert("Por favor, preencha seu contato!")
+                  }else if($("#semestre").val() === ""){
+                    alert("Por favor, preencha seu semestre!")
+                  }else {
+                    $.ajax({
+                      type:'POST',
+                      url:'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes/'+__id_regime+'/alunos.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI',
+                      contentType: "application/json",
+                      crossDomain: true,
+                      headers:{
+                      
+                      },
+                      data:JSON.stringify(__data) ,
+                      success: function(data){
+                          alert('Aluno incluido no regime');
+                          console.log(data);
+                          location.reload();
+                      },
+                      error: function(data){
+                          console.log(data);            
+                      }
                 
+                      
+                    })
+                  }
                 }
               )
             }else{
@@ -257,7 +267,61 @@ function inscreverRegime(__id_regime){
 }
 
 function finalizarRegime(_id__regime) {
-  alert('Faz ai troxa!')
+  $.ajax({
+    type:'GET',
+    url:'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes/'+_id__regime+'.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI',
+    contentType: "application/json",
+    crossDomain: true,
+    headers:{
+    
+    },        
+    success: function(data){
+        $('#final-rgm').click(
+          function () {
+            // VERIFICAÇÃO DE RA
+            if($('#ra-finalizar').val() == Object.values(data.alunos)[0].registro_academico){
+                  $.ajax({
+                    type:'POST',
+                    url:'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimesfinalizados.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI',
+                    contentType: "application/json",
+                    crossDomain: true,
+                    headers:{
+                    
+                    },
+                    data:JSON.stringify(data) ,
+                    success: function(data){
+                      alert('Regime Finalizado!')
+                      $.ajax({
+                        type:'DELETE',
+                        url:'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes/'+_id__regime+'.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI',
+                        contentType: "application/json",
+                        crossDomain: true,
+                        headers:{
+                        
+                        },
+                        success: function(data){
+                            console.log(data);
+                            location.reload();
+                        },
+                        error: function(data){
+                            console.log(data);            
+                        }    
+                      })
+                    },
+                    error: function(data){
+                        console.log(data);            
+                    }    
+                  })
+            }else{
+              alert("RA Inválido!")
+            }
+          })
+        
+    },
+    error: function(data){
+        console.log(data);            
+    }
+  })
 }
 
 
@@ -280,12 +344,8 @@ $('.btn-nv-rgm').click(
 
 $('#btn-insc-nv-rgm').click(
   function (){
-      console.log('Novo Regime');
-      
       var selectCursos = document.querySelector('#curso'); 
       var selectDisciplina = document.querySelector('#disciplina');
-      console.log(selectCursos);
-      console.log(selectDisciplina);
 
       data = {
           "curso": selectCursos.options[selectCursos.selectedIndex].text,
