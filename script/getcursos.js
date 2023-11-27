@@ -244,13 +244,11 @@ function inscreverRegime(__id_regime){
                       success: function(data){
                           alert('Aluno incluido no regime');
                           console.log(data);
-                          location.reload();
+                          location.reload();    
                       },
                       error: function(data){
                           console.log(data);            
                       }
-                
-                      
                     })
                   }
                 }
