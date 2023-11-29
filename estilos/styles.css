@@ -30,6 +30,22 @@ input[type=number] {
     }
 }
 
+@media (max-width: 370px) {
+    .btns-options{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .card-btn-finalizar{
+        margin-bottom: 0.25rem;
+    }
+    .card-btn-insc{
+        margin: 0 !important;
+    }
+}
+
+
 #logomarca {
     width: auto;
     height: 60px;
@@ -44,6 +60,9 @@ main{
     width: 80%;
     margin: 0 10% 0 10%;
     padding: 10px 0 80px 0;
+}
+.text-espace{
+    line-height: 1.5rem;
 }
 .card-links {
     display: flex;

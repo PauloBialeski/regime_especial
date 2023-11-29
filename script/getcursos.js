@@ -54,11 +54,12 @@ function loadRegimes(_id_disciplina){
           Object.keys(data).forEach(
               function(item){                                
                   $('#regimes').append(
-                    '<div class="col-12 col-md-6 col-lg-4">'+
+                    '<div class="col-12 col-md-6 col-xl-4">'+
                         '<div class="card mb-3">'+
                             '<div class="card-body">'+
                               '<h5 class="card-title mb-3 text-center">'+data[item].disciplina+'</h5>'+
-                              '<h6 class="card-subtitle mb-1 text-body-secondary" id="resp-'+item+'">Responsavel: Nome Responsável</h6>'+
+                              '<h6 class="card-subtitle mb-2 text-body-secondary" id="resp-'+item+'"></h6>'+
+                              '<h6 class="card-subtitle mb-1 text-body-secondary" id="contato-resp-'+item+'"></h6>'+
                               '<h6 class="mb-3 text-body-secondary">Alunos cadastrados neste regime: '+Object.keys(data[item].alunos).length+'/10</h6>'+
                               '<div id="content-alunos">'+
 
@@ -111,9 +112,13 @@ function ObterAlunosRegime(_id_regime){
       
       },        
       success: function(data){
-          $('#resp-'+_id_regime+'').text(
-            "Responsável: "+Object.values(data.alunos)[0].nome
+          $('#resp-'+_id_regime+'').html(
+            '<em class="text-dark">Responsável</em>: '+Object.values(data.alunos)[0].nome
           )
+          $('#contato-resp-'+_id_regime+'').html(
+              '<em class="text-dark">Contato</em>: '+Object.values(data.alunos)[0].contato
+          )
+
 
           Object.keys(data.alunos).forEach(
               function(item){          
@@ -289,6 +294,19 @@ function finalizarRegime(_id__regime) {
                     data:JSON.stringify(data) ,
                     success: function(data){
                       alert('Regime Finalizado!')
+                      function gerarPDF() {
+                        var $conteudo = document.querySelector('#ul-alunos'+_id__regime+'');
+                      
+                        const options = {
+                         margin: [10, 10, 10, 10],
+                         filename: "meu-regime.pdf",
+                         html2canvas: { scale: 2},
+                         jsPDF: {unit: "mm", format: "a4", orientation: "portrait"}
+                        };
+                      
+                        html2pdf().set(options).from($conteudo).save();
+                      }
+                      gerarPDF()
                       $.ajax({
                         type:'DELETE',
                         url:'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes/'+_id__regime+'.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI',
