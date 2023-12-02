@@ -41,60 +41,82 @@ async function getDisciplinas() {
 
 function loadRegimes(_id_disciplina){    
   _id_disciplina = disciplinas.options[disciplinas.selectedIndex].value;
-  $('#regimes').empty();
-  $.ajax({
-      type:'GET',
-      url:'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI&orderBy="id_disciplina"&equalTo="'+_id_disciplina+'"',
-      contentType: "application/json",
-      crossDomain: true,
-      headers:{
-      
-      },        
-      success: function(data){
-          Object.keys(data).forEach(
-              function(item){                                
-                  $('#regimes').append(
-                    '<div class="col-12 col-md-6 col-xl-4">'+
-                        '<div class="card mb-3">'+
-                            '<div class="card-body">'+
-                              '<h5 class="card-title mb-3 text-center">'+data[item].disciplina+'</h5>'+
-                              '<h6 class="card-subtitle mb-2 text-body-secondary" id="resp-'+item+'"></h6>'+
-                              '<h6 class="card-subtitle mb-1 text-body-secondary" id="contato-resp-'+item+'"></h6>'+
-                              '<h6 class="mb-3 text-body-secondary">Alunos cadastrados neste regime: '+Object.keys(data[item].alunos).length+'/10</h6>'+
-                              '<div id="content-alunos">'+
-
-                                '<div class="collapse" id="collapse-'+item+'">'+
-                                  '<ul id="ul-alunos-'+item+'" class="list-group list-group-flush">'+
-                                  '</ul>'+
-                                '</div>'+                                                     
-                              '</div>'+
-
-                              '<div class="card-links">'+
-                                    '<button class="card-link card-btn" id="btn-arrow-'+item+'" data-bs-toggle="collapse" data-bs-target="#collapse-'+item+'" aria-expanded="false" aria-controls="collapseExample" id="'+item+'">'+
-                                    '<ion-icon name="chevron-down-outline"></ion-icon>'+
-                                    '</button>'+
-                                    '<div class="btns-options">'+
-                                      '<button class="card-link card-btn-finalizar col-6" data-bs-toggle="modal" data-bs-target="#finalizar-regime" onclick="finalizarRegime('+"'"+item+"'"+')">'+
-                                        'Finalizar'+
-                                      '</button>'+
-                                      '<button class="card-link card-btn-insc col-6" data-bs-toggle="modal" data-bs-target="#increver-regime" onclick="inscreverRegime('+"'"+item+"'"+')">'+
-                                        'Inscrever-se'+
-                                      '</button>'+
-                                    '</div>'+ 
-                                '</div>'+
-                            '</div>'+
-                          '</div>'+
-                    '</div>'
-                  );
-                ObterAlunosRegime(item)                                           
-              }
-          )
+    $('#regimes').empty();
+    $.ajax({
+        type:'GET',
+        url:'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI&orderBy="id_disciplina"&equalTo="'+_id_disciplina+'"',
+        contentType: "application/json",
+        crossDomain: true,
+        headers:{
         
-      },
-      error: function(data){
-          console.log(data);            
-      }
-  })             
+        },        
+        success: function(data){
+            Object.keys(data).forEach(
+                function(item){                            
+                    $('#regimes').append(
+                      '<div class="col-12 col-md-6 col-xl-4">'+
+                          '<div class="card mb-3">'+
+                              '<div class="card-body">'+
+                                  '<h5 class="card-title mb-3 text-center">'+data[item].disciplina+'</h5>'+
+                                  '<h6 class="card-subtitle mb-2 text-body-secondary" id="resp-'+item+'"></h6>'+
+                                  '<h6 class="card-subtitle mb-1 text-body-secondary" id="contato-resp-'+item+'"></h6>'+
+                                  '<h6 class="mb-3 text-body-secondary">Alunos cadastrados neste regime: '+Object.keys(data[item].alunos).length+'/10</h6>'+
+                                  '<div id="content-alunos">'+
+
+                                    '<div class="collapse" id="collapse-'+item+'">'+
+                                      '<ul id="ul-alunos-'+item+'" class="list-group list-group-flush">'+
+                                      '</ul>'+
+                                    '</div>'+                                                     
+                                  '</div>'+
+
+                                '<div class="card-links">'+
+                                      '<button class="card-link card-btn" id="btn-arrow-'+item+'" data-bs-toggle="collapse" data-bs-target="#collapse-'+item+'" aria-expanded="false" aria-controls="collapseExample" id="'+item+'">'+
+                                      '<ion-icon name="chevron-down-outline"></ion-icon>'+
+                                      '</button>'+
+                                      '<div class="btns-options">'+
+                                        '<button class="card-link card-btn-finalizar col-6" data-bs-toggle="modal" data-bs-target="#finalizar-regime" onclick="finalizarRegime('+"'"+item+"'"+')">'+
+                                          'Finalizar'+
+                                        '</button>'+
+                                        '<button class="card-link card-btn-insc col-6" data-bs-toggle="modal" data-bs-target="#increver-regime" onclick="inscreverRegime('+"'"+item+"'"+')">'+
+                                          'Inscrever-se'+
+                                        '</button>'+
+                                      '</div>'+ 
+                                  '</div>'+
+                              '</div>'+
+                            '</div>'+
+                          '</div>'
+                      );
+                    $('#regimes-pdf').append(
+                      '<div id="regimes-pdf-'+item+'">'+
+                        '<h2 class="text-center">Regime Especial</h2>'+
+                        '<h4 class="">'+data[item].curso+'</h4>'+
+                        '<h5 class="">'+data[item].disciplina+'</h5>'+
+                        '<table id="regimes-pdf-table-'+item+'" class="table table-striped">'+
+                          '<tr>'+
+                            '<th>RA</th>'+
+                            '<th>Nome</th>'+
+                            '<th>Contato</th>'+
+                            '<th>Semestre</th>'+
+                            '<th>Periodo</th>'+
+                          '</tr>'+
+                        '</table>'+
+                      '</div>'
+                    )
+                  ObterAlunosRegime(item)                                           
+                })
+                if ($('#regimes').is(':empty')) {
+                  $('#regimes').append(
+                    '<h3 class="text-center">Não há regimes nesta disciplina.</h3>'+
+                    '<p class="text-center">Clique em "Novo Regime" para criar um novo regime.</p>'
+                  )
+                }
+          
+        },
+        error: function(data){
+            console.log(data);            
+        }
+      })
+               
 }
 
 function ObterAlunosRegime(_id_regime){
@@ -124,13 +146,23 @@ function ObterAlunosRegime(_id_regime){
               function(item){          
                   $('#ul-alunos-'+_id_regime+'').append(
                       '<li class="list-group-item">'+data.alunos[item].nome+'</li>'                      
-                  );              
+                  );
+                  $('#regimes-pdf-table-'+_id_regime+'').append(
+                      '<tr>'+
+                        '<td>'+data.alunos[item].registro_academico+'</td>'+
+                        '<td>'+data.alunos[item].nome+'</td>'+
+                        '<td>'+data.alunos[item].contato+'</td>'+
+                        '<td>'+data.alunos[item].semestre+'</td>'+
+                        '<td>'+data.alunos[item].turno+'</td>'+
+                      '</tr>'
+                  )              
               })
       },
       error: function(data){
           console.log(data);            
       }
-  })  
+  })
+    
 }
 
 function incluirRegime(_data){
@@ -228,6 +260,7 @@ function inscreverRegime(__id_regime){
                     "turno": turno
                   }
                   
+
                   if($("#ra").val() === ""){
                     alert("Por favor, preencha seu registro academico!")
                   }else if($("#nome").val() === ""){
@@ -295,8 +328,8 @@ function finalizarRegime(_id__regime) {
                     success: function(data){
                       alert('Regime Finalizado!')
                       function gerarPDF() {
-                        var $conteudo = document.querySelector('#ul-alunos'+_id__regime+'');
-                      
+                        var $conteudo = document.querySelector('#regimes-pdf-'+_id__regime+'');
+
                         const options = {
                          margin: [10, 10, 10, 10],
                          filename: "meu-regime.pdf",
@@ -340,10 +373,18 @@ function finalizarRegime(_id__regime) {
   })
 }
 
-
-
-$(document).ready(
-  getCursos()
+$(document).ready(function(){
+  getCursos();
+  $('#ra').mask('000000');
+  $('#contato').mask('(00) 00000-0000');
+  $('#semestre').mask('00');
+  $('#ra-novo-rgm').mask('000000');
+  $('#contato-novo-rgm').mask('(00) 00000-0000');
+  $('#semestre-novo-rgm').mask('00');
+  $('#ra-finalizar').mask('000000');
+}
+  
+  
 );
 
 $('.btn-nv-rgm').click(
