@@ -346,22 +346,25 @@ function finalizarRegime(_id__regime) {
                         window.print();
                       }
                       imprimirDiv()
-                      $.ajax({
-                        type:'DELETE',
-                        url:'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes/'+_id__regime+'.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI',
-                        contentType: "application/json",
-                        crossDomain: true,
-                        headers:{
-                        
-                        },
-                        success: function(data){
-                            console.log(data);
-                            location.reload();
-                        },
-                        error: function(data){
-                            console.log(data);            
-                        }    
-                      })
+                      function deleteRegime(){
+                        $.ajax({
+                          type:'DELETE',
+                          url:'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes/'+_id__regime+'.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI',
+                          contentType: "application/json",
+                          crossDomain: true,
+                          headers:{
+                          
+                          },
+                          success: function(data){
+                              console.log(data);
+                              location.reload();
+                          },
+                          error: function(data){
+                              console.log(data);            
+                          }    
+                        })
+                      }
+                      deleteRegime();
                     },
                     error: function(data){
                         console.log(data);            
