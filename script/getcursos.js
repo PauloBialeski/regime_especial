@@ -87,7 +87,7 @@ function loadRegimes(_id_disciplina){
                           '</div>'
                       );
                     $('#regimes-pdf').append(
-                      '<div id="regimes-pdf-'+item+'">'+
+                      '<div id="regimes-pdf-'+item+'" class="hide">'+
                         '<h2 class="text-center">Regime Especial</h2>'+
                         '<h4 class="">'+data[item].curso+'</h4>'+
                         '<h5 class="">'+data[item].disciplina+'</h5>'+
@@ -327,19 +327,25 @@ function finalizarRegime(_id__regime) {
                     data:JSON.stringify(data) ,
                     success: function(data){
                       alert('Regime Finalizado!')
-                      function gerarPDF() {
-                        var $conteudo = document.querySelector('#regimes-pdf-'+_id__regime+'');
+                      // function gerarPDF() {
+                      //   var $conteudo = document.querySelector('#regimes-pdf-'+_id__regime+'');
 
-                        const options = {
-                         margin: [10, 10, 10, 10],
-                         filename: "meu-regime.pdf",
-                         html2canvas: { scale: 2},
-                         jsPDF: {unit: "mm", format: "a4", orientation: "portrait"}
-                        };
+                      //   const options = {
+                      //    margin: [10, 10, 10, 10],
+                      //    filename: "meu-regime.pdf",
+                      //    html2canvas: { scale: 2},
+                      //    jsPDF: {unit: "mm", format: "a4", orientation: "portrait"},
+                      //    pagebreak: { mode: 'avoid-all', before: '#page2el' }
+                      //   };
                       
-                        html2pdf().set(options).from($conteudo).save();
+                      //   html2pdf().set(options).from($conteudo).save();
+                      // }
+                      // gerarPDF()
+                      function imprimirDiv() {
+                        $('#regimes-pdf-'+_id__regime+'').removeClass('hide')
+                        window.print();
                       }
-                      gerarPDF()
+                      imprimirDiv()
                       $.ajax({
                         type:'DELETE',
                         url:'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes/'+_id__regime+'.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI',

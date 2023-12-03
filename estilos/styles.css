@@ -22,6 +22,19 @@ input[type=number] {
     background-color: #33A457 !important;
 
 }
+@media print {
+    body * {
+      visibility: hidden;
+    }
+    #regimes-pdf, #regimes-pdf * {
+      visibility: visible;
+    }
+    #regimes-pdf {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
 
 @media (max-width: 576px) {
     .navbar div{
