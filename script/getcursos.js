@@ -334,7 +334,6 @@ function finalizarRegime(_id__regime) {
                     filename: "meu-regime.pdf",
                     html2canvas: { scale: 2 },
                     jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-                    pagebreak: { mode: 'avoid-all', before: '#page2el' }
                   };
 
                   html2pdf().set(options).from($conteudo).save();
@@ -392,7 +391,7 @@ $('.btn-nv-rgm').click(
     $('.nv-rgm-curso-disc').empty();
     var selectCursos = document.querySelector('#curso');
     var selectDisciplina = document.querySelector('#disciplina');
-    
+
     $('.nv-rgm-curso-disc').prepend(
       '<h6 class="nv-rgm-curso">' + selectCursos.options[selectCursos.selectedIndex].text + '</h6>' +
       '<p class="nv-rgm-disciplina">' + selectDisciplina.options[selectDisciplina.selectedIndex].text + '</p>'
