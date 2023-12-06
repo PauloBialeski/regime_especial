@@ -92,7 +92,7 @@ function loadRegimes(_id_disciplina) {
                     '<h6 class="mb-3 text-body-secondary">Alunos cadastrados neste regime: ' + Object.keys(data[item].alunos).length + '/10</h6>' +
                     '<div id="content-alunos">' +
                       '<div class="collapse" id="collapse-' + item + '">' +
-                      '<ul id="ul-alunos-' + item + '" class="list-group list-group-flush">' +
+                      '<ul id="ul-alunos-' + item + '" class="list-group mb-3 list-group-flush">' +
                       '</ul>' +
                       '</div>' +
                     '</div>' +
