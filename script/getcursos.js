@@ -2,6 +2,30 @@ $.support.cors = true;
 let cursos = document.querySelector("#curso");
 let disciplinas = document.querySelector("#disciplina");
 
+
+function valorCurso() {
+  var selectedValue = $('#curso').val();
+  sessionStorage.setItem('curso', selectedValue);
+}
+function valorDisciplina() {
+  var selectedValue = $('#disciplina').val();
+  sessionStorage.setItem('disciplina', selectedValue);
+}
+
+function carregarValorCurso() {
+  var savedValue = sessionStorage.getItem('curso');
+  if (savedValue) {
+      $('#curso').val(savedValue);
+  }
+}
+
+function carregarValorDisciplina() {
+  var savedValue = sessionStorage.getItem('disciplina');
+  if (savedValue) {
+      $('#disciplina').val(savedValue);
+  }
+}
+
 async function getCursos() {
   $(cursos).empty();
 
@@ -15,15 +39,17 @@ async function getCursos() {
     option.innerText = data[item].nome
     cursos.appendChild(option);
   })
-
+  carregarValorCurso();
   getDisciplinas();
-
+  
 }
 
 async function getDisciplinas() {
+  valorCurso();
   $(disciplinas).empty();
 
   if (cursos.options.length != 0) {
+    
     let id = cursos.options[cursos.selectedIndex].value;
     let response = await fetch("https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/cursos/" + id + ".json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI");
 
@@ -34,12 +60,15 @@ async function getDisciplinas() {
       option.innerText = data.disciplinas[item].nome;
       disciplinas.appendChild(option);
     });
-
+    carregarValorDisciplina();
   }
+
   loadRegimes(disciplinas.options[disciplinas.selectedIndex].value);
+  
 }
 
 function loadRegimes(_id_disciplina) {
+  valorDisciplina();
   _id_disciplina = disciplinas.options[disciplinas.selectedIndex].value;
   $('#regimes').empty();
   $.ajax({
@@ -381,9 +410,8 @@ $(document).ready(function () {
   $('#contato-novo-rgm').mask('(00) 00000-0000');
   $('#semestre-novo-rgm').mask('00');
   $('#ra-finalizar').mask('000000');
+  
 }
-
-
 );
 
 $('.btn-nv-rgm').click(
