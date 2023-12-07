@@ -367,23 +367,33 @@ function finalizarRegime(_id__regime) {
 
                   html2pdf().set(options).from($conteudo).save();
                 }
-                gerarPDF()
-                $.ajax({
-                  type: 'DELETE',
-                  url: 'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes/' + _id__regime + '.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI',
-                  contentType: "application/json",
-                  crossDomain: true,
-                  headers: {
-
-                  },
-                  success: function (data) {
-                    console.log(data);
-                    location.reload();
-                  },
-                  error: function (data) {
-                    console.log(data);
+                
+                function isMobile() {
+                  var userAgent = navigator.userAgent.toLowerCase();
+                  if (userAgent.search(/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i) != -1) {
+                    return true
+                  }else{
+                    gerarPDF()
+                    $.ajax({
+                      type: 'DELETE',
+                      url: 'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes/' + _id__regime + '.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI',
+                      contentType: "application/json",
+                      crossDomain: true,
+                      headers: {
+    
+                      },
+                      success: function (data) {
+                        console.log(data);
+                        location.reload();
+                      },
+                      error: function (data) {
+                        console.log(data);
+                      }
+                    })
                   }
-                })
+                }
+                isMobile();
+                
               },
               error: function (data) {
                 console.log(data);
