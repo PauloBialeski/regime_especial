@@ -374,25 +374,25 @@ function finalizarRegime(_id__regime) {
                     return true
                   }else{
                     gerarPDF()
-                    $.ajax({
-                      type: 'DELETE',
-                      url: 'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes/' + _id__regime + '.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI',
-                      contentType: "application/json",
-                      crossDomain: true,
-                      headers: {
-    
-                      },
-                      success: function (data) {
-                        console.log(data);
-                        location.reload();
-                      },
-                      error: function (data) {
-                        console.log(data);
-                      }
-                    })
                   }
                 }
                 isMobile();
+                $.ajax({
+                  type: 'DELETE',
+                  url: 'https://regime-especial-default-rtdb.firebaseio.com/regimeespecial/regimes/' + _id__regime + '.json?auth=wZhwSeRHtyRJnrabzlBBpbfoPplj7BtXZ4tFUgAI',
+                  contentType: "application/json",
+                  crossDomain: true,
+                  headers: {
+
+                  },
+                  success: function (data) {
+                    console.log(data);
+                    location.reload();
+                  },
+                  error: function (data) {
+                    console.log(data);
+                  }
+                })
                 
               },
               error: function (data) {
